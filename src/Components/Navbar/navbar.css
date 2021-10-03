@@ -1,0 +1,11 @@
+.navbar-toggler-icon:focus{
+    outline: none;
+    box-shadow: none;
+}
+.search-product{
+    width: 40%;
+    margin: 0 auto;
+}
+.search-btn{
+    cursor: pointer;
+}
