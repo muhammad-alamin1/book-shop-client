@@ -11,7 +11,8 @@ import {
 } from "react-router-dom";
 import { createContext, useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
-import Inventory from './Components/Inventory/Inventory';
+import MainDashboard from './Components/Dashboard/MainDashboard/MainDashboard';
+
 
 
 // context api
@@ -45,8 +46,8 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/inventory">
-              <Inventory />
+            <Route path="/adminPanel">
+              <MainDashboard />
             </Route>
             <Route exact path="/">
               <Book />

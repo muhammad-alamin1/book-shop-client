@@ -22,7 +22,7 @@ export default function Navbar() {
                                 <a className="nav-link" href="#">Orders</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Admin</a>
+                                <Link className="nav-link" to="/adminPanel">Admin</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Deals</a>
