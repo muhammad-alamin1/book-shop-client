@@ -15,7 +15,7 @@ const books = [
         img: img1,
         title: 'Eloquent JavaScript',
         author: 'Marijn Haverbeke',
-        price: `$${134}`
+        price: 134
     },
     {
         id: 2,
@@ -23,7 +23,7 @@ const books = [
         img: img2,
         title: 'Learn JavaScript Quickly',
         author: 'Dan Vanderkam',
-        price: `$${132}`
+        price: 132
     },
     {
         id: 3,
@@ -31,7 +31,7 @@ const books = [
         img: img3,
         title: 'Software Engineering at Google',
         author: 'Titus Winter',
-        price: `$${342}`
+        price: 342
     },
     {
         id: 4,
@@ -39,7 +39,7 @@ const books = [
         img: img4,
         title: 'Python Crash Course',
         author: 'Eric Matthes',
-        price: `$${334}`
+        price: 334
     },
     {
         id: 5,
@@ -47,7 +47,7 @@ const books = [
         img: img5,
         title: 'JavaScript Everywhere',
         author: 'Adam D. Scottark Lutz',
-        price: `$${234}`
+        price: 234
     },
     {
         id: 6,
@@ -55,7 +55,7 @@ const books = [
         img: img6,
         title: 'Effective TypeScript',
         author: 'Dan Vanderkam',
-        price: `$${134}`
+        price: 134
     },
     {
         id: 7,
@@ -63,7 +63,7 @@ const books = [
         img: img7,
         title: 'The C Programming Language',
         author: 'Brain W. Kernighan Dennis M. Ritchie',
-        price: `$${342}`
+        price: 342
     },
     {
         id: 8,
@@ -71,7 +71,7 @@ const books = [
         img: img8,
         title: 'The Road to React',
         author: 'Robin Wieruch',
-        price: `$${334}`
+        price: 334
     },
     {
         id: 9,
@@ -79,7 +79,7 @@ const books = [
         img: img9,
         title: 'Learning React',
         author: 'Alex Banks & Eve Porcello ',
-        price: `$${225}`
+        price: 225
     },
 ]
 export default books;

@@ -6,3 +6,15 @@
     color:red;
     cursor: pointer;
 }
+#action-edit-icon{
+    color:green;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.book-info{
+    margin-right: 50px !important;
+}
+table, th, td {
+    border: 1px solid #fff;
+    padding: 15px;
+}

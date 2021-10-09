@@ -1,10 +1,12 @@
 import './bookcard.css';
 import React from 'react';
-
+import Orders from './../Orders/Orders';
+import { Link } from 'react-router-dom';
 
 export default function BookCard(props) {
-    console.log(props);
+    // console.log(props);
     const { img, title, author, price, bookCode } = props.book;
+
     return (
         <div className="" id="card-container">
             <div className="box">
@@ -16,10 +18,10 @@ export default function BookCard(props) {
                 </div>
                 <div className="row">
                     <div className="col-6 price">
-                        <h3><strong>{price}</strong></h3>
+                        <h3><strong>${price}</strong></h3>
                     </div>
                     <div className="col-6 button">
-                        <button className="btn btn-success">Buy Now</button>
+                        <button onClick={() => { props.handleAddProduct(props.book) }} className="btn btn-success">Buy Now</button>
                     </div>
                 </div>
             </div>

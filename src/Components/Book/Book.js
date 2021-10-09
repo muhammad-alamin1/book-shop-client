@@ -14,6 +14,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Announcer from './../Search/Announcer';
 import Search from './../Search/Search';
 import { useState } from 'react';
+import Orders from './../Orders/Orders';
+import { Card } from '@material-ui/core';
 
 
 const books = [
@@ -104,11 +106,12 @@ const filterPosts = (posts, query) => {
 
 export default function Book() {
     const [book, setBook] = useState([])
+    const [cart, setCart] = useState([]);
     // const [user, setUser] = useContext(userContext);
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
-    const filteredPosts = filterPosts(books, searchQuery);
+    const filteredPosts = filterPosts(book, searchQuery);
 
     // fake data load to database
     useEffect(() => {
@@ -117,6 +120,7 @@ export default function Book() {
             .then((res) => res.json())
             .then(data => {
                 setBook(data)
+                // console.log(data)
             })
             .catch(err => {
                 console.log(err)
@@ -124,6 +128,33 @@ export default function Book() {
             })
     }, [])
 
+    // Add Product to card
+    const handleAddProduct = (product) => {
+        console.log(product)
+        const toBeAddedKey = product.id;
+        const sameProduct = cart.find(pd => pd.id === toBeAddedKey);
+        let count = 1;
+        let newCart;
+        if (sameProduct) {
+            count = sameProduct.quantity + 1;
+            sameProduct.quantity = count;
+            const others = cart.filter(pd => pd.id !== toBeAddedKey);
+            newCart = [...others, sameProduct];
+        }
+        else {
+            product.quantity = 1;
+            newCart = [...cart, product];
+        }
+        setCart(newCart);
+    }
+    // console.log(cart);
+    let totalPrice = 0;
+    // const totalPrice = cart.reduce((total, prd) => total + prd.price, 0);
+    for (let i = 0; i < cart.length; i++) {
+        const product = cart[i];
+        totalPrice = totalPrice + product.price * product.quantity;
+
+    }
     return (
         <Router>
             <Announcer
@@ -139,13 +170,18 @@ export default function Book() {
                     <li key={post.id}>{post.title} (code: {post.bookCode})</li>
                 ))}
             </div>
+            <div className="py-5 text-center">
+                <h3 className="py-2">Order Summery</h3>
+                <h4>Items orders: {cart.length}</h4>
+                <h4>Product Price: ${totalPrice}</h4>
+            </div>
             <div className="book container" id="home-page-book-list">
                 <div className="row">
                     {
                         book.length === 0 && <div className="text-center"><div className="spinner-border text-primary" role="status"><span className="sr-only"></span></div></div>
                     }
                     {
-                        book.map((book) => <BookCard key={book.id} book={book} />)
+                        book.map((book) => <BookCard key={book.id} book={book} handleAddProduct={handleAddProduct} />)
                     }
                 </div>
             </div>

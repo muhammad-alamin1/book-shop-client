@@ -12,6 +12,8 @@ import {
 import { createContext, useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import MainDashboard from './Components/Dashboard/MainDashboard/MainDashboard';
+import Orders from './Components/Orders/Orders';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 
 
 
@@ -48,6 +50,9 @@ function App() {
             </Route>
             <Route path="/adminPanel">
               <MainDashboard />
+            </Route>
+            <Route path="/orders">
+              <Orders />
             </Route>
             <Route exact path="/">
               <Book />
