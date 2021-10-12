@@ -89,7 +89,7 @@ export default function SignUp() {
                     setUser(newUserInfo);
                 });
         }
-}
+    }
     // UpdateUser name 
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
@@ -104,7 +104,37 @@ export default function SignUp() {
                 console.log(error.message);
             });
     };
-    
+
+    // google authentication
+    const GoogleSignIn = () => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                const credential = result.credential;
+                const token = credential.accessToken;
+                const users = result.user;
+                // console.log(users)
+                const newUserInfo = { ...user }
+                newUserInfo.success = true;
+                newUserInfo.error = '';
+                newUserInfo.name = result.user.displayName;
+                newUserInfo.email = result.user.email;
+                newUserInfo.photo = result.user.photoURL;
+                setUser(newUserInfo);
+
+
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                const newUserInfo = { ...user };
+                newUserInfo.success = false;
+                newUserInfo.error = error.message;
+                setUser(newUserInfo);
+
+            });
+    }
+
     return (
         <div className="sing-up">
             <form onSubmit={handleSubmit}>
@@ -139,11 +169,11 @@ export default function SignUp() {
                     user.success && <p style={{ color: 'green', textAlign: 'center' }}>User created successfully</p>
                 }
                 {
-                    user.error && <p style={{color:'red', textAlign:'center'}}>The email address is already in use by another account.</p>
+                    user.error && <p style={{ color: 'red', textAlign: 'center' }}>The email address is already in use by another account.</p>
                 }
             </div>
             <div className="text-center">
-                <button id="google-signIn">Continue with Google</button>
+                <button id="google-signIn" onClick={GoogleSignIn}>Continue with Google</button>
             </div>
         </div>
     )

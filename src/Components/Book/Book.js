@@ -10,7 +10,7 @@ import img7 from '../../img/image7.png';
 import img8 from '../../img/image8.png';
 import img9 from '../../img/image9.png';
 import BookCard from './../BookCard/BookCard';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Announcer from './../Search/Announcer';
 import Search from './../Search/Search';
 import { useState } from 'react';
@@ -111,7 +111,7 @@ export default function Book() {
     const { search } = window.location;
     const query = new URLSearchParams(search).get('s');
     const [searchQuery, setSearchQuery] = useState(query || '');
-    const filteredPosts = filterPosts(book, searchQuery);
+    const filteredPosts = filterPosts(books, searchQuery);
 
     // fake data load to database
     useEffect(() => {
@@ -178,10 +178,10 @@ export default function Book() {
             <div className="book container" id="home-page-book-list">
                 <div className="row">
                     {
-                        book.length === 0 && <div className="text-center"><div className="spinner-border text-primary" role="status"><span className="sr-only"></span></div></div>
+                        book.length === 0 && <div className="text-center"></div>
                     }
                     {
-                        book.map((book) => <BookCard key={book.id} book={book} handleAddProduct={handleAddProduct} />)
+                        books.map((book) => <BookCard key={book.id} book={book} handleAddProduct={handleAddProduct} />)
                     }
                 </div>
             </div>

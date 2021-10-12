@@ -5,3 +5,24 @@
     
     
 }
+
+/* Responsive design */
+@media screen and (max-width: 992px) {
+    #card-container{   
+        width:33%;        
+        
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    #card-container{   
+        width:50%;        
+        
+    }
+  }
+  
+  @media screen and (max-width: 500px) {
+    #card-container{   
+        width:100%;        
+    }
+  }

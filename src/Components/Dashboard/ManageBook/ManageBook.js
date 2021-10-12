@@ -91,7 +91,7 @@ export default function ManageBook() {
             <div className="py-5 text-center" id="update">
                 <h3 className="py-2">Update Book</h3>
                 <label>Title</label>
-                <input className="form-control" type="text" value={update.title} name="title" /><br />
+                <input className="form-control" type="text" value={update.title} name="title" placeholder="update name"/><br />
                 <label>Author</label>
                 <input className="form-control" type="text" value={update.author} name="author" /><br />
                 <label>Book Code</label>
