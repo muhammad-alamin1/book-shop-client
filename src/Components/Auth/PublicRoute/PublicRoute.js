@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router';
-import { userContext } from './../../App';
+import { useAuth } from '../../../context/AuthContext';
 
-const PrivateRoute = ({children,...rest}) => {
-    const [user , setUser] = useContext(userContext)
+const PublicRoute = ({ children, ...rest }) => {
+    const { currUser } = useAuth();
     return (
         <Route
             {...rest}
             render={({ location }) =>
-            user.email ? (
+                !currUser ? (
                     children
                 ) : (
                     <Redirect
                         to={{
-                            pathname: "/login",
+                            pathname: "/",
                             state: { from: location }
                         }}
                     />
@@ -23,4 +23,4 @@ const PrivateRoute = ({children,...rest}) => {
     );
 };
 
-export default PrivateRoute;
+export default PublicRoute;

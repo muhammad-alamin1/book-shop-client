@@ -1,59 +1,44 @@
-import './App.css';
-import Navbar from './Components/Navbar/Navbar';
-import Book from './Components/Book/Book';
-import SignUp from './Components/SignUp/SignUp';
-import Login from './Components/Login/Login';
+import { useEffect, useState } from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
+  BrowserRouter as Router, Route, Switch
 } from "react-router-dom";
-import { createContext, useEffect, useState } from 'react';
-import NotFound from './Components/NotFound/NotFound';
+import './App.css';
+import Login from './Components/Auth/Login/Login';
+import PrivateRoute from './Components/Auth/PrivateRoute/PrivateRoute';
+import PublicRoute from './Components/Auth/PublicRoute/PublicRoute';
+import SignUp from './Components/Auth/SignUp/SignUp';
+import Book from './Components/Book/Book';
 import MainDashboard from './Components/Dashboard/MainDashboard/MainDashboard';
+import Navbar from './Components/Navbar/Navbar';
+import NotFound from './Components/NotFound/NotFound';
 import Orders from './Components/Orders/Orders';
-import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-
-
-
-// context api
-export const userContext = createContext();
+import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
   const [loader, setLoader] = useState(true);
-  const [user, setUser] = useState({
-    isSignIn: false,
-    name: '',
-    email: '',
-    password: '',
-    photo: '',
-    success: false,
-    error: '',
-  });
 
   useEffect(() => {
-    setTimeout(() => setLoader(false), 2000)
+    setTimeout(() => setLoader(false), 1000)
   }, []);
   return (
     loader ? <div className="text-center" id="spinner"><div className="spinner-border text-primary" role="status"><span className="sr-only"></span></div></div> :
-      <userContext.Provider value={[user, setUser]}>
+      <AuthProvider>
         <Router className="App">
           <Navbar />
           <Switch>
-            <Route path="/signup">
+            <PublicRoute path="/signup">
               <SignUp />
-            </Route>
-            <Route path="/login">
+            </PublicRoute>
+            <PublicRoute path="/login">
               <Login />
-            </Route>
-            <Route path="/adminPanel">
+            </PublicRoute>
+            <PrivateRoute path="/admin-panel">
               <MainDashboard />
-            </Route>
-            <Route path="/orders">
+            </PrivateRoute>
+            <PrivateRoute path="/orders">
               <Orders />
-            </Route>
+            </PrivateRoute>
             <Route exact path="/">
               <Book />
             </Route>
@@ -62,7 +47,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </userContext.Provider>
+      </AuthProvider>
   );
 }
 

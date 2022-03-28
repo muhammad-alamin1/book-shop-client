@@ -1,18 +1,12 @@
-import './navbar.css';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { userContext } from './../../App';
+import { useAuth } from '../../context/AuthContext';
+import './navbar.css';
 
 
 export default function Navbar() {
-    const [user, setUser] = useContext(userContext);
+    const { currUser, logout } = useAuth();
 
-    // sign out
-    const clickSignOutUser = () => {
-        const newUser = { ...user };
-        newUser.name = '';
-        setUser(newUser);
-    }
     return (
         <div className="">
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -30,32 +24,38 @@ export default function Navbar() {
                                 <Link className="nav-link" to="/orders">Orders</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/adminPanel">Admin</Link>
+                                <Link className="nav-link" to="/admin-panel">Admin</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Deals</a>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/login">Sign In</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/signup">Sign Up</Link>
-                            </li>
-                            <li className="nav-item">
-                                <div className="dropdown">
-                                    <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-user-circle"></i>
-                                    </a>
-                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        {
-                                            user.name && <Link className=" dropdown-item" to="#">{user.name}</Link>
-                                        }
-                                        {
-                                            user.name ? <li><a onClick={() => clickSignOutUser()} className="dropdown-item" href="#">Sign Out</a></li> : <Link className=" dropdown-item" to="/login">Login</Link>
-                                        }
-                                    </ul>
-                                </div>
-                            </li>
+                            {
+                                !currUser ? (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/login">Sign In</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/signup">Sign Up</Link>
+                                        </li>
+                                    </>
+                                ) : (
+                                    <>
+                                        <li className="nav-item">
+                                            <div className="dropdown">
+                                                <a className="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-user-circle"></i>
+                                                </a>
+                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <Link className="dropdown-item" to="">{currUser.displayName}</Link>
+                                                    <Link className="dropdown-item" to="/login"><span class="material-icons-outlined" title="Logout" onClick={logout} > logout </span></Link>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </>
+                                )
+                            }
+
                         </ul>
                     </div>
                 </div>

@@ -173,7 +173,7 @@ export default function Book() {
             <div className="py-5 text-center">
                 <h3 className="py-2">Order Summery</h3>
                 <h4>Items orders: {cart.length}</h4>
-                <h4>Product Price: ${totalPrice}</h4>
+                <h4>Product Price: {totalPrice}</h4>
             </div>
             <div className="book container" id="home-page-book-list">
                 <div className="row">

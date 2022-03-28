@@ -18,7 +18,7 @@ export default function BookCard(props) {
                 </div>
                 <div className="row">
                     <div className="col-6 price">
-                        <h3><strong>${price}</strong></h3>
+                        <h3><strong>{price}</strong></h3>
                     </div>
                     <div className="col-6 button">
                         <button onClick={() => { props.handleAddProduct(props.book) }} className="btn btn-success">Buy Now</button>
