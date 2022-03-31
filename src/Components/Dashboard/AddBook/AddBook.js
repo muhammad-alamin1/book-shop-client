@@ -15,12 +15,15 @@ export default function AddBook() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+
         const formData = new FormData();
+
         formData.append("file", file);
         formData.append("title", title);
         formData.append("author", author);
         formData.append("bookCode", bookCode);
         formData.append("price", price);
+
         try {
             const response = await axios({
                 method: "post",

@@ -1,24 +1,26 @@
-#manageBook{
-    color:#fff;
-    margin-left: 300px;
+#manageBook {
+  color: #fff;
+  margin-left: 300px;
 }
-#action-icon{
-    color:red;
-    cursor: pointer;
+#action-icon {
+  color: red;
+  cursor: pointer;
 }
-#action-edit-icon{
-    color:green;
-    cursor: pointer;
-    margin-right: 10px;
+#action-edit-icon {
+  color: green;
+  cursor: pointer;
+  margin-right: 10px;
 }
-.book-info{
-    margin-right: 50px !important;
+.book-info {
+  margin-right: 50px !important;
 }
-table, th, td {
-    border: 1px solid #fff;
-    padding: 15px;
+table,
+th,
+td {
+  border: 1px solid #fff;
+  padding: 15px;
 }
-#update{
-    width: 50%;
-    margin: 0 auto;
+#update {
+  width: 50%;
+  margin: 0 auto;
 }
