@@ -76,15 +76,11 @@ export default function MainDashboard() {
                                         <span>Manage Book</span>
                                         <span className="badge badge-pill badge-warning">New</span>
                                     </Link>
-                                    <div className="sidebar-submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Dashboard 1
-                                                    <span className="badge badge-pill badge-success">Pro</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <Link to="/admin-panel/add-book">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Add Book</span>
+                                        <span className="badge badge-pill badge-danger"></span>
+                                    </Link>
                                 </li>
                                 <li className="sidebar-dropdown">
                                     <a href="#">
@@ -96,73 +92,18 @@ export default function MainDashboard() {
                                         <span>Inventory</span>
                                         <span className="badge badge-pill badge-danger"></span>
                                     </Link>
-                                    <Link to="/admin-panel/add-book">
-                                        <i class="fas fa-plus"></i>
-                                        <span>Add Book</span>
-                                        <span className="badge badge-pill badge-danger"></span>
-                                    </Link>
-                                    <div className="sidebar-submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Products
-
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Orders</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Credit cart</a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li className="sidebar-dropdown">
                                     <a href="#">
                                         <i className="far fa-gem"></i>
                                         <span>Components</span>
                                     </a>
-                                    <div className="sidebar-submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="#">General</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Panels</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Tables</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Icons</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Forms</a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                                 <li className="sidebar-dropdown">
                                     <a href="#">
                                         <i className="fa fa-chart-line"></i>
                                         <span>Charts</span>
                                     </a>
-                                    <div className="sidebar-submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Pie chart</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Line chart</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Bar chart</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Histogram</a>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </li>
                             </ul>
                         </div>

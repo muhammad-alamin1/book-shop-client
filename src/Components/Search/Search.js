@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Search({ searchQuery, setSearchQuery }) {
     const history = useHistory();
@@ -15,12 +15,9 @@ export default function Search({ searchQuery, setSearchQuery }) {
                 autoComplete="off"
                 onSubmit={onSubmit}
                 className="d-flex py-5"
-
             >
                 <label htmlFor="header-search">
-                    <span className="visually-hidden">
-                        Search blog posts
-                    </span>
+                    <span className="visually-hidden">Search</span>
                 </label>
                 <input
                     value={searchQuery}
@@ -31,8 +28,10 @@ export default function Search({ searchQuery, setSearchQuery }) {
                     name="s"
                     className="form-control"
                 />
-                <button type="submit" className="btn btn-success">Search</button>
+                <button type="submit" className="btn btn-outline-success ms-3">
+                    Search
+                </button>
             </form>
         </div>
-    )
+    );
 }
