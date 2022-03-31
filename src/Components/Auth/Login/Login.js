@@ -27,7 +27,7 @@ export default function Login() {
             history.push('/');
         } catch (error) {
             setSuccess("");
-            setError(`Failed to create an account.`);
+            setError(`Invalid Credential.`);
         }
     };
 

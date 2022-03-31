@@ -1,7 +1,18 @@
-#add-book{
-    width: 60%;
-    margin: 0 auto;
-    color:#fff;
-    margin-left: 300px;
+#add-book {
+  width: 60%;
+  margin: 0 auto;
+  color: #fff;
+  margin-left: 300px;
+}
 
+.success {
+  color: green;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-top: 50px;
 }

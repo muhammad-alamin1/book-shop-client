@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Login from './Components/Auth/Login/Login';
+import PrivateAdminRoute from './Components/Auth/PrivateAdminRoute/PrivateAdminRoute';
 import PrivateRoute from './Components/Auth/PrivateRoute/PrivateRoute';
 import PublicRoute from './Components/Auth/PublicRoute/PublicRoute';
 import SignUp from './Components/Auth/SignUp/SignUp';
@@ -33,9 +34,9 @@ function App() {
             <PublicRoute path="/login">
               <Login />
             </PublicRoute>
-            <PrivateRoute path="/admin-panel">
+            <PrivateAdminRoute path="/admin-panel">
               <MainDashboard />
-            </PrivateRoute>
+            </PrivateAdminRoute>
             <PrivateRoute path="/orders">
               <Orders />
             </PrivateRoute>

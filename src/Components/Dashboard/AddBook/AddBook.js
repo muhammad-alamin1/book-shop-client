@@ -1,70 +1,123 @@
-import './addBook.css';
-import React, { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
+import "./addBook.css";
 
 export default function AddBook() {
-    // , img: ''
-    const initialFormState = { id: null, title: '', author: '', bookCode: null, price: null, img:'' }
-    const [user, setUser] = useState(initialFormState)
+    const [title, setTitle] = useState('');
+    const [author, setAuthor] = useState('');
+    const [bookCode, setBookCode] = useState('');
+    const [price, setPrice] = useState('');
     const [file, setFile] = useState(null);
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
-        // admin data send to database
-        const formData = new FormData()
-        formData.append('file', file)
-        formData.append('img', user.img)
-        formData.append('title', user.title)
-        formData.append('author', user.author)
-        formData.append('bookCode', user.bookCode)
-        formData.append('price', user.price)
-        fetch('http://localhost:7070/newAddBook', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
-            .catch(error => {
-                console.error(error)
-            })
-    }
-    console.log(user)
 
-    // handle input change
-    const handleChange = (event) => {
-        const { name, value } = event.target
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("title", title);
+        formData.append("author", author);
+        formData.append("bookCode", bookCode);
+        formData.append("price", price);
+        try {
+            const response = await axios({
+                method: "post",
+                url: "http://localhost:8080/book/add-book",
+                data: formData,
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            console.log(response.data.message);
+            if (response.status === 200 || response.status === 201) {
+                setError('');
+                setSuccess(response.data.message);
+            }
+        } catch (error) {
+            setSuccess('');
+            setError('Book added failed.!');
+        }
 
-        setUser({ ...user, [name]: value })
-    }
+    };
 
     // file change
-    const handleFileChange = (event) => {
-        const newFile = event.target.files[0];
-        setFile(newFile);
+    const handleFileSelect = (event) => {
+        setFile(event.target.files[0])
     }
+
     return (
         <div id="add-book">
+            {error && <p className="error">{error}</p>}
+            {success && <p className="success">{success}</p>}
             <h3 className="my-4">Add Book </h3>
-            <form onSubmit={handleSubmit}>
-                <label className="my-2" for="title">Book Name</label>
-                <input onBlur={handleChange} type="text" name="title" id="title" className="form-control" required />
+            <form onSubmit={handleSubmit} encType="multipart/form-data" >
+                <label className="my-2" for="title">
+                    Book Name
+                </label>
+                <input
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    type="text"
+                    name="title"
+                    id="title"
+                    className="form-control"
+                    required
+                />
 
-                <label className="my-2" for="author">Author Name</label>
-                <input onBlur={handleChange} type="text" name="author" id="author" className="form-control" required />
+                <label className="my-2" for="author">
+                    Author Name
+                </label>
+                <input
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                    type="text"
+                    name="author"
+                    id="author"
+                    className="form-control"
+                    required
+                />
 
-                <label className="my-2" for="code">Add Book Code</label>
-                <input onBlur={handleChange} type="number" name="bookCode" id="code" className="form-control" required />
+                <label className="my-2" for="code">
+                    Add Book Code
+                </label>
+                <input
+                    value={bookCode}
+                    onChange={(e) => setBookCode(e.target.value)}
+                    type="text"
+                    name="bookCode"
+                    id="code"
+                    className="form-control"
+                    required
+                />
 
-                <label className="my-2" for="price">Add Price</label>
-                <input onBlur={handleChange} type="text" name="price" id="price" className="form-control" required />
+                <label className="my-2" for="price">
+                    Add Price
+                </label>
+                <input
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    type="text"
+                    name="price"
+                    id="price"
+                    className="form-control"
+                    required
+                />
 
-                <label className="my-2" for="img">Add Book Cover Photo</label>
-                <input onChange={handleFileChange} onBlur={handleChange} type="file" name="img" id="img" className="form-control" required />
+                <label className="my-2" for="img">
+                    Add Book Cover Photo
+                </label>
+                <input
+                    // value={file}
+                    onChange={handleFileSelect}
+                    type="file"
+                    name="file"
+                    id="img"
+                    className="form-control"
+                    required
+                />
                 <br />
-                <input type="submit" value="Save" className="btn btn-success" />
+                <input type="submit" value="Save" className="btn btn-outline-success" />
             </form>
         </div>
-    )
+    );
 }

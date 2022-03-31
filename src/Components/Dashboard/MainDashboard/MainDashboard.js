@@ -1,31 +1,25 @@
-import './main.css';
-import React from 'react'
-import Sidebar from './../Sidebar/Sidebar';
+import React from 'react';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthContext';
 import muhammad from '../../../img/muhammad.jpg';
-import { Link } from 'react-router-dom';
 import Inventory from './../../Inventory/Inventory';
 import AddBook from './../AddBook/AddBook';
 import ManageBook from './../ManageBook/ManageBook';
-
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
+import './main.css';
 
 
 export default function MainDashboard() {
+    const { logout } = useAuth();
     return (
         <Router>
             <Switch>
-                <Route path="/adminPanel/manageBook">
+                <Route path="/admin-panel/manage-book">
                     <ManageBook />
                 </Route>
-                <Route path="/adminPanel/inventory">
+                <Route path="/admin-panel/inventory">
                     <Inventory />
                 </Route>
-                <Route path="/adminPanel/addBook">
+                <Route path="/admin-panel/add-book">
                     <AddBook />
                 </Route>
             </Switch>
@@ -77,7 +71,7 @@ export default function MainDashboard() {
                                     <span>General</span>
                                 </li>
                                 <li className="sidebar-dropdown">
-                                    <Link to="/adminPanel/manageBook">
+                                    <Link to="/admin-panel/manage-book">
                                         <i className="fa fa-tachometer-alt"></i>
                                         <span>Manage Book</span>
                                         <span className="badge badge-pill badge-warning">New</span>
@@ -97,12 +91,12 @@ export default function MainDashboard() {
                                         <i className="fa fa-shopping-cart"></i>
                                         <span>E-commerce</span>
                                     </a>
-                                    <Link to="/adminPanel/inventory">
+                                    <Link to="/admin-panel/inventory">
                                         <i class="fas fa-plus"></i>
                                         <span>Inventory</span>
                                         <span className="badge badge-pill badge-danger"></span>
                                     </Link>
-                                    <Link to="/adminPanel/addBook">
+                                    <Link to="/admin-panel/add-book">
                                         <i class="fas fa-plus"></i>
                                         <span>Add Book</span>
                                         <span className="badge badge-pill badge-danger"></span>
@@ -188,7 +182,7 @@ export default function MainDashboard() {
                             <i className="fa fa-cog"></i>
                             <span className="badge-sonar"></span>
                         </a>
-                        <a href="#">
+                        <a href="#" onClick={logout}>
                             <i className="fa fa-power-off"></i>
                         </a>
                     </div>
