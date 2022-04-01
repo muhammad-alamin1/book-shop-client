@@ -27,7 +27,7 @@ export default function AddBook() {
         try {
             const response = await axios({
                 method: "post",
-                url: "http://localhost:8080/book/add-book",
+                url: "https://book-shop2303.herokuapp.com/book/add-book",
                 data: formData,
                 headers: { "Content-Type": "multipart/form-data" },
             });

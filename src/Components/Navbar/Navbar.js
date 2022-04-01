@@ -20,19 +20,22 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/orders">Orders</Link>
-                            </li>
                             {
                                 currUser && currUser.email === 'muhammad@gmail.com' ? (
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/admin-panel">Admin</Link>
                                     </li>
-                                ) : ''
+                                ) : (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/orders">Orders</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="#">Deals</a>
+                                        </li>
+                                    </>
+                                )
                             }
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Deals</a>
-                            </li>
                             {
                                 !currUser ? (
                                     <>

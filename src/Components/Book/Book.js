@@ -8,7 +8,8 @@ import './book.css';
 
 export default function Book() {
     const [books, setBooks] = useState([])
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState({});
+    const [count, setCount] = useState(0);
 
     // filter books
     const filterPosts = (posts, query) => {
@@ -30,7 +31,7 @@ export default function Book() {
 
     // data load to database
     useEffect(() => {
-        const url = `http://localhost:8080/book/all-books`;
+        const url = `https://book-shop2303.herokuapp.com/book/all-books`;
         fetch(url)
             .then((res) => res.json())
             .then(data => {
@@ -43,30 +44,8 @@ export default function Book() {
 
     // Add Product to card
     const handleAddProduct = (product) => {
-        console.log(product)
-        const toBeAddedKey = product.id;
-        const sameProduct = cart.find(pd => pd.id === toBeAddedKey);
-        let count = 1;
-        let newCart;
-        if (sameProduct) {
-            count = sameProduct.quantity + 1;
-            sameProduct.quantity = count;
-            const others = cart.filter(pd => pd.id !== toBeAddedKey);
-            newCart = [...others, sameProduct];
-        }
-        else {
-            product.quantity = 1;
-            newCart = [...cart, product];
-        }
-        setCart(newCart);
-    }
-
-    let totalPrice = 0;
-    // const totalPrice = cart.reduce((total, prd) => total + prd.price, 0);
-    for (let i = 0; i < cart.length; i++) {
-        const product = cart[i];
-        totalPrice = totalPrice + product.price * product.quantity;
-
+        setCount(count + 1);
+        setCart(product)
     }
 
     return (

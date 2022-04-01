@@ -1,14 +1,16 @@
+import React from 'react';
 import './cart.css';
-import React from 'react'
 
 export default function Cart(props) {
-    const { name, quantity, id, price } = props.product;
+    const { title, price, quantity } = props.cart;
+    const count = props.count;
+    const totalPrice = props.price;
 
     return (
         <div className="review-items">
-            <h4 className="product-name">{name}</h4>
-            <p>Quantity: {quantity}</p>
-            <p>Price: ${price}</p>
+            <h5>Order Items: {count} </h5>
+            <p>Name: {title}</p>
+            <p>Price: ${totalPrice}</p>
             <br />
             <button
                 className="main-btn"

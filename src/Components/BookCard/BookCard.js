@@ -8,7 +8,7 @@ export default function BookCard(props) {
         <div className="" id="card-container">
             <div className="box">
                 <img
-                    src={`http://localhost:8080/uploads/${file}`}
+                    src={`https://book-shop2303.herokuapp.com/uploads/${file}`}
                     alt={`${title}`}
                     className="img-fluid"
                 />

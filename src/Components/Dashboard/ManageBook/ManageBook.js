@@ -19,7 +19,7 @@ export default function ManageBook() {
 
     // all books data load to database
     useEffect(() => {
-        const url = `http://localhost:8080/book/all-books`;
+        const url = `https://book-shop2303.herokuapp.com/book/all-books`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
@@ -33,7 +33,7 @@ export default function ManageBook() {
     // delete single product
     const deleteBook = async (id) => {
         const response = await axios.delete(
-            `http://localhost:8080/book/delete/${id}`
+            `https://book-shop2303.herokuapp.com/book/delete/${id}`
         );
         console.log(response);
 
@@ -47,7 +47,7 @@ export default function ManageBook() {
     // load single book && show input fields
     const updateBook = async (id) => {
         setId(id);
-        await fetch(`http://localhost:8080/book/single/${id}`)
+        await fetch(`https://book-shop2303.herokuapp.com/book/single/${id}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -63,7 +63,7 @@ export default function ManageBook() {
         e.preventDefault();
 
         const response = await axios.put(
-            `http://localhost:8080/book/update/${id}`,
+            `https://book-shop2303.herokuapp.com/book/update/${id}`,
             update
         );
 
